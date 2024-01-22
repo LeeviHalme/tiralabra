@@ -4,7 +4,7 @@ Repository for Aineopintojen harjoitustyö: Algoritmit ja tekoäly -course organ
 
 ## Table of contents
 
-- [Requirements Specification](/.github/docs/REQUIREMENTS_SPECIFICATION.md)
+- [Requirements Specification](/.github/docs/REQUIREMENTS.md)
 - [Testing Document](/.github/docs/TESTING.md)
 - [Implementation Document](/.github/docs/IMPLEMENTATION.md)
 - [Usage Guide](/.github/docs/USAGE.md)
