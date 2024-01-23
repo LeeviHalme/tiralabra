@@ -1,5 +1,8 @@
 # tiralabra
 
+![Lint Badge](https://github.com/LeeviHalme/tiralabra/actions/workflows/lint.yml/badge.svg)
+![Test Badge](https://github.com/LeeviHalme/tiralabra/actions/workflows/test.yml/badge.svg)
+
 Repository for **Aineopintojen harjoitustyö: Algoritmit ja tekoäly** -course organized by University of Helsinki in Spring 2024.
 
 ## Table of contents
