@@ -11,15 +11,18 @@ Repository for **Aineopintojen harjoitustyö: Algoritmit ja tekoäly** -course o
 
 ## Getting Started
 
-To get started with the project, you need to have [Python >=3.11](https://www.python.org/downloads/) and [Poetry >=1.6](https://python-poetry.org/) installed on your machine.
+### Prerequisites
 
-1. Install dependencies with Poetry:
+- [Python >=3.11](https://www.python.org/downloads/)
+- [Poetry >=1.6](https://python-poetry.org/)
+
+### Install dependencies with Poetry:
 
 ```bash
 poetry install
 ```
 
-2. Run the program:
+### Run the program:
 
 ```bash
 poetry run poe cli
