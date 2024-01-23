@@ -9,7 +9,7 @@ All the project documentation will be written in English.
 
 ## Problem Statement
 
-The calculator will be able to evaluate mathematical expressions written in [infix notation](https://en.wikipedia.org/wiki/Infix_notation). The calculator will support the following operators: `+`, `-`, `*`, `/`, `^`, `(`, `)`.
+The calculator will be able to evaluate mathematical expressions written in [infix notation](https://en.wikipedia.org/wiki/Infix_notation). The calculator will support the following operators: `+`, `-`, `*`, `/`, `^`, `(`, `)`. It will also have support for variables, one-parameter functions (`sqrt`, `sin`) and two-parameter functions (`min`, `max`)
 
 It is considered hard to evaluate mathematical expressions written in infix notation because of the operator precedence and the need to use parentheses to override the precedence. That is why we first need to convert the expression to [Reverse Polish notation (RPN)](https://en.wikipedia.org/wiki/Reverse_Polish_notation) using the [Shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm). After the expression is in RPN or postfix notation, we can evaluate the expression easily using a stack and applying the calculations to the top two elements.
 
