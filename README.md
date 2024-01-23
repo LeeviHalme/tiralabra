@@ -2,6 +2,7 @@
 
 ![Lint Badge](https://github.com/LeeviHalme/tiralabra/actions/workflows/lint.yml/badge.svg)
 ![Test Badge](https://github.com/LeeviHalme/tiralabra/actions/workflows/test.yml/badge.svg)
+[![Codecov Badge](https://codecov.io/gh/LeeviHalme/tiralabra/graph/badge.svg?token=296GA4LY45)](https://codecov.io/gh/LeeviHalme/tiralabra)
 
 Repository for **Aineopintojen harjoitustyö: Algoritmit ja tekoäly** -course organized by University of Helsinki in Spring 2024.
 
