@@ -1,6 +1,6 @@
 # tiralabra
 
-Repository for Aineopintojen harjoitustyö: Algoritmit ja tekoäly -course organized by University of Helsinki in Spring 2024.
+Repository for **Aineopintojen harjoitustyö: Algoritmit ja tekoäly** -course organized by University of Helsinki in Spring 2024.
 
 ## Table of contents
 
@@ -12,3 +12,4 @@ Repository for Aineopintojen harjoitustyö: Algoritmit ja tekoäly -course organ
 ## Weekly reports
 
 - [Week 1](/.github/docs/REPORT_1.md)
+- [Week 2](/.github/docs/REPORT_2.md)
