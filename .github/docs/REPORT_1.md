@@ -6,6 +6,8 @@ I also created the project repository and registered it to Labtool. I created a 
 
 Next week I will setup the Python project and all the necessary tools for testing and linting, including CI scripts and codecov. I will also start implementing the text-based user interface and the shunting yard algorithm.
 
+Time spent: Approximately 2 hours.
+
 ## Questions
 
 - Is the project scope suitable for the course?
