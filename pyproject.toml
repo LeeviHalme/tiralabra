@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "tiralabra"
+version = "1.0.0"
+description = "Scientific Calculator using the Shunting-yard algorithm"
+authors = ["LeeviHalme <29179759+LeeviHalme@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+click = "^8.1.7"
+
+[tool.poetry.group.dev.dependencies]
+poethepoet = "^0.24.4"
+pytest = "^7.4.4"
+coverage = "^7.4.0"
+pylint = "^3.0.3"
+
+[tool.poe.tasks]
+cli = "poetry run python3 src/index.py" # CLI startup script
+test = "pytest" # run tests
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
