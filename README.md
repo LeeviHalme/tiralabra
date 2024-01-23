@@ -9,6 +9,27 @@ Repository for **Aineopintojen harjoitustyö: Algoritmit ja tekoäly** -course o
 - [Implementation Document](/.github/docs/IMPLEMENTATION.md)
 - [Usage Guide](/.github/docs/USAGE.md)
 
+## Getting Started
+
+To get started with the project, you need to have [Python >=3.11](https://www.python.org/downloads/) and [Poetry >=1.6](https://python-poetry.org/) installed on your machine.
+
+1. Install dependencies with Poetry:
+
+```bash
+poetry install
+```
+
+2. Run the program:
+
+```bash
+poetry run poe cli
+
+# or
+
+poetry shell
+poe cli
+```
+
 ## Weekly reports
 
 - [Week 1](/.github/docs/REPORT_1.md)
