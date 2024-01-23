@@ -47,3 +47,9 @@ class TestStack(unittest.TestCase):
         self.assertEqual(self.stack.size(), 1)
         self.stack.pop()
         self.assertEqual(self.stack.size(), 0)
+
+    def test_pop_from_empy_stack(self) -> None:
+        self.assertRaises(IndexError, self.stack.pop)
+
+    def test_peek_from_empy_stack(self) -> None:
+        self.assertRaises(IndexError, self.stack.peek)
