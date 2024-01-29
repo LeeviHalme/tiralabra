@@ -11,12 +11,15 @@ class Queue:
         self.queue = deque()
 
     def add(self, value: str) -> None:
-        self.queue.appendleft(value)
+        self.queue.append(value)
 
     def remove(self) -> str:
         if self.size() == 0:
             raise IndexError("remove from empty queue")
-        return self.queue.pop()
+        return self.queue.popleft()
 
     def size(self) -> int:
         return len(self.queue)
+    
+    def __str__(self) -> str:
+        return " ".join(self.queue)
