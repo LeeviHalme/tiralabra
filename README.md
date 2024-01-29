@@ -29,7 +29,7 @@ poetry install
 ### Run the program:
 
 ```bash
-poetry run poe cli
+poetry run poe cli "(1 + 2) * 5"
 
 # or
 
