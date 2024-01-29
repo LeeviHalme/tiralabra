@@ -25,7 +25,13 @@ The shunting-yard algorithm is a method for parsing mathematical expressions wri
 
 Now the infix notation `(3 + 4)` is converted to postfix notation `(3 4 +)` and can be evaluated.
 
+### Operator precedence
+
+Between the steps 3 and 4, the algorithm checks the precedence of the operators. If the operator on the top of the stack has higher precedence than the operator that is being read, the operator on the top of the stack is popped to the output queue before the new operator is pushed to the stack. This is done until the operator on the top of the stack has lower precedence than the new operator.
+
 The algorithm is implemented in the `classes/shunting_yard.py` file.
+
+[YouTube: "Comp Sci in 5: Shunting Yard Algorithm"](https://www.youtube.com/watch?v=Wz85Hiwi5MY)
 
 ## Infix vs Postfix notation
 
@@ -35,7 +41,7 @@ Using Postfix, or Reverse Polish Notation, the operators are after operands. The
 
 ## Postfix evaluation
 
-Coming soon...
+[YouTube: "Comp Sci in 5: Post Fix Stack Evaluator"](https://www.youtube.com/watch?v=bebqXO8H4eA)
 
 ## Custom data structures
 
