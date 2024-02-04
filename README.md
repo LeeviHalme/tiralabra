@@ -41,3 +41,4 @@ poe cli
 
 - [Week 1](/.github/docs/REPORT_1.md)
 - [Week 2](/.github/docs/REPORT_2.md)
+- [Week 3](/.github/docs/REPORT_3.md)
