@@ -1,21 +1,18 @@
 import click
-from classes.stack import Stack
+from classes.shunting_yard import ShuntingYard
 
 @click.command()
 @click.argument("infix_expression", type=click.STRING, required=True)
-# @click.option("--vars", help="Variables list")
-def evaluate(infix_expression: str) -> int:
-    stack = Stack()
+@click.option("-verbose", is_flag=True, type=click.BOOL, \
+              help="Verbose mode (prints out algorithm steps)")
+# @click.option("-vars", help="Variables list")
+def evaluate(infix_expression: str, verbose: bool) -> int:
+    alg = ShuntingYard(verbose)
 
-    stack.push("+1")
-    stack.push("+2")
-    stack.push("+3")
-    print(stack.peek())
-    stack.pop()
-    print(stack.peek())
+    # parse the expression
+    postfix_expression = alg.parse(infix_expression)
 
-    click.echo(infix_expression)
-    click.echo(0)
+    print("POSTFIX:", postfix_expression)
 
 # on init, run the main command
 if __name__ == "__main__":
