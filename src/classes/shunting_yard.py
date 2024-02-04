@@ -37,10 +37,10 @@ class ShuntingYard:
                 # pop the left parenthesis off the stack and discard it
                 self.op_stack.pop()
                 break
-            else:
-                self.print("Pop stack to output", self.op_stack.peek())
-                # add the operator to the output queue
-                self.output_queue.add(self.op_stack.pop())
+
+            self.print("Pop stack to output", self.op_stack.peek())
+            # add the operator to the output queue
+            self.output_queue.add(self.op_stack.pop())
 
         # if no left parenthesis was found, the expression is malformed
         if parenthesis_mismatch:
@@ -54,8 +54,10 @@ class ShuntingYard:
           (self.precedence.get(op1, 0) == self.precedence.get(op2, 0) \
           and op1 != "^")
 
+    # pylint: disable=too-many-statements
     def parse(self, expression: str) -> str:
         # iterate through the expression
+        # pylint: disable=too-many-nested-blocks
         for token in expression:
             # if token is a number
             if token.isdigit():
@@ -79,7 +81,7 @@ class ShuntingYard:
                     self.output_queue.add(self.op_stack.pop())
 
                 self.print("Push token to stack", token)
-                
+
                 # add the operator to the output queue
                 self.op_stack.push(token)
                 continue
@@ -95,7 +97,7 @@ class ShuntingYard:
             if token == ")":
                 self.parse_right_parenthesis()
                 continue
-    
+
         self.print("Pop entire stack to output")
         # pop all operators off the stack and add them to the output queue
         while self.op_stack.size() > 0:

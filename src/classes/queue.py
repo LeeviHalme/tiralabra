@@ -20,6 +20,6 @@ class Queue:
 
     def size(self) -> int:
         return len(self.queue)
-    
+
     def __str__(self) -> str:
         return " ".join(self.queue)
