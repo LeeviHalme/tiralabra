@@ -18,16 +18,17 @@ The shunting-yard algorithm is a method for parsing mathematical expressions wri
 
 1. Read the input: `3 + 4`
 2. Push `3` to the output queue
-3. Push the operator `+` to the operator stack
-4. Push `4` to the output queue
-5. Pop the operators from the operator stack to the output queue
-6. Output queue: `3 4 +`
+3. Check the operator `+` and compare it to the operator stack
+4. Push the operator `+` to the operator stack
+5. Push `4` to the output queue
+6. Pop the operators from the operator stack to the output queue
+7. Output queue: `3 4 +`
 
 Now the infix notation `(3 + 4)` is converted to postfix notation `(3 4 +)` and can be evaluated.
 
 ### Operator precedence
 
-Between the steps 3 and 4, the algorithm checks the precedence of the operators. If the operator on the top of the stack has higher precedence than the operator that is being read, the operator on the top of the stack is popped to the output queue before the new operator is pushed to the stack. This is done until the operator on the top of the stack has lower precedence than the new operator.
+In step 3, the algorithm checks the precedence of the operators. If the operator on the top of the stack has higher precedence than the operator that is being read, the operator on the top of the stack is popped to the output queue before the new operator is pushed to the stack. This is done until the operator on the top of the stack has lower precedence than the new operator.
 
 The algorithm is implemented in the `classes/shunting_yard.py` file.
 
@@ -50,6 +51,7 @@ The app uses two custom data structures: `Stack` and `Queue` that can be found i
 ## Sources
 
 - [Wikipedia: Shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm)
+- [Github: codecocodes/swift-algorithm-club, Shunting Yard](https://aquarchitect.github.io/swift-algorithm-club/Shunting%20Yard/)
 - [Wikipedia: Stack (abstract data type)](<https://en.wikipedia.org/wiki/Stack_(abstract_data_type)>)
 - [Wikipedia: Queue (abstract data type)](<https://en.wikipedia.org/wiki/Queue_(abstract_data_type)>)
 - [Wikipedia: Infix notation](https://en.wikipedia.org/wiki/Infix_notation)
