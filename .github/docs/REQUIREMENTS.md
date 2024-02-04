@@ -17,11 +17,11 @@ It is considered hard to evaluate mathematical expressions written in infix nota
 
 The calculator will use the [Shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm) to convert the infix notation to [Reverse Polish notation (RPN)](https://en.wikipedia.org/wiki/Reverse_Polish_notation) and then evaluate the expression and return the result.
 
-The calculator will use a custom Stack data structure built with Python's built-in `deque`.
+The calculator will use a custom Stack and Queue data structures both built with Python's built-in `deque`.
 
 ## Time Complexity Analysis
 
-Stack is a data structure that has O(1) time complexity for adding and removing elements, while the shunting-yard algorithm has O(n) time complexity. The time will depend on the length of the expression, thus the calculator time complexity will be **O(n)**.
+Stack and Queue are data structures that have O(1) time complexity for adding and removing elements while the shunting-yard algorithm has O(n) time complexity. The time will depend on the length of the expression, thus the calculator time complexity will be **O(n)**.
 
 ## Sources
 
