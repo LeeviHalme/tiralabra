@@ -9,7 +9,7 @@ The app is a CLI (command line interface) tool that takes a mathematical express
 You can see all the available commands by running:
 
 ```bash
-poetry run poe cli --help
+poetry run poe --help
 ```
 
 ## Shunting-yard algorithm
