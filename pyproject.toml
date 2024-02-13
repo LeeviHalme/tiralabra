@@ -19,6 +19,7 @@ pylint = "^3.0.3"
 [tool.poe.tasks]
 cli = "poetry run python3 src/index.py" # CLI startup script
 test = "pytest" # run tests
+lint = "pylint src" # lint the code
 
 [build-system]
 requires = ["poetry-core"]
