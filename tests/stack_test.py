@@ -4,7 +4,7 @@ from src.classes.stack import Stack
 class TestStack(unittest.TestCase):
     def setUp(self) -> None:
         self.stack = Stack()
-    
+
     def test_push(self) -> None:
         self.stack.push("+1")
         self.stack.push("+2")
@@ -49,7 +49,9 @@ class TestStack(unittest.TestCase):
         self.assertEqual(self.stack.size(), 0)
 
     def test_pop_from_empy_stack(self) -> None:
-        self.assertRaises(IndexError, self.stack.pop)
+        with self.assertRaises(IndexError):
+            self.stack.pop()
 
     def test_peek_from_empy_stack(self) -> None:
-        self.assertRaises(IndexError, self.stack.peek)
+        with self.assertRaises(IndexError):
+            self.stack.peek()
