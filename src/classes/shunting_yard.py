@@ -12,7 +12,7 @@ class MalformedExpressionException(Exception):
 # - parse_right_parenthesis:
 #     pops operators off the stack until a left parenthesis is found
 # - has_higher_precedence: checks if op1 has higher precedence than op2
-# - parse: parses the expression and returns the output queue
+# - parse: parses the expression (list of tokens) and returns the output queue
 class ShuntingYard:
     def __init__(self, verbose: bool = False):
         self.verbose = verbose
@@ -55,13 +55,19 @@ class ShuntingYard:
           and op1 != "^")
 
     # pylint: disable=too-many-statements
-    def parse(self, expression: str) -> str:
+    def parse(self, expression: list) -> Queue:
+        # if expression is empty, raise an exception
+        if len(expression) == 0:
+            raise MalformedExpressionException("Empty expression!")
+
         # iterate through the expression
         # pylint: disable=too-many-nested-blocks
         for token in expression:
-            # if token is a number
-            if token.isdigit():
+            # if token is a number (positive or negative)
+            if token.isdigit() or token.startswith("-") and len(token) > 1:
                 self.print("Add token to output", token)
+
+                # add the number to the output queue
                 self.output_queue.add(token)
                 continue
 
@@ -76,8 +82,9 @@ class ShuntingYard:
                 # the same precedence and o1 is left-associative)
                 while self.op_stack.size() > 0 and self.op_stack.peek() != "(" \
                 and self.has_higher_precedence(self.op_stack.peek(), token):
-                    # add the operator to the output queue
                     self.print("Pop stack to output", token)
+
+                    # add the operator to the output queue
                     self.output_queue.add(self.op_stack.pop())
 
                 self.print("Push token to stack", token)
@@ -89,6 +96,7 @@ class ShuntingYard:
             # if token is a left parenthesis
             if token == "(":
                 self.print("Push token to stack", token)
+
                 # push the left parenthesis onto the stack
                 self.op_stack.push(token)
                 continue
@@ -99,10 +107,9 @@ class ShuntingYard:
                 continue
 
         self.print("Pop entire stack to output")
+
         # pop all operators off the stack and add them to the output queue
         while self.op_stack.size() > 0:
             self.output_queue.add(self.op_stack.pop())
 
-        # pylint: disable=fixme
-        # FIXME: for testing, this method should really return the output queue
-        return str(self.output_queue)
+        return self.output_queue
