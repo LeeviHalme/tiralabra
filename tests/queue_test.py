@@ -26,6 +26,12 @@ class TestQueue(unittest.TestCase):
         self.queue.add(3)
         self.assertEqual(self.queue.size(), 3)
 
+    def test_to_list(self):
+        self.queue.add(1)
+        self.queue.add(2)
+        self.queue.add(3)
+        self.assertEqual(self.queue.to_list(), [1, 2, 3])
+
     def test_remove_from_empty_queue(self):
         with self.assertRaises(IndexError):
             self.queue.remove()
