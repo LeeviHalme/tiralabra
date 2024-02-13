@@ -6,6 +6,7 @@ from collections import deque
 #   add(item: str) -> None: enqueues item onto queue
 #   dequeue() -> str: dequeues item from queue
 #   size() -> int: returns size of queue
+#   to_list() -> list: returns queue as a list (for testing)
 class Queue:
     def __init__(self):
         self.queue = deque()
@@ -20,6 +21,9 @@ class Queue:
 
     def size(self) -> int:
         return len(self.queue)
+    
+    def to_list(self) -> list:
+        return list(self.queue)
 
     def __str__(self) -> str:
-        return " ".join(self.queue)
+        return self.queue.__str__()
