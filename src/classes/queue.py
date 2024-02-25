@@ -8,8 +8,8 @@ from collections import deque
 #   size() -> int: returns size of queue
 #   to_list() -> list: returns queue as a list (for testing)
 class Queue:
-    def __init__(self):
-        self.queue = deque()
+    def __init__(self, queue: deque = None):
+        self.queue = queue or deque()
 
     def add(self, value: str) -> None:
         self.queue.append(value)
