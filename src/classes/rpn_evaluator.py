@@ -58,7 +58,7 @@ class RPNEvaluator:
                     raise MalformedExpressionException(
                         "Not enough operands for operator"
                     ) from e
-                
+
             raise MalformedExpressionException(f"Invalid token: {token}")
 
         if self.stack.size() != 1:
