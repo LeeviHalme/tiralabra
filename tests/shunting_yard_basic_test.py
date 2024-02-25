@@ -7,6 +7,10 @@ class TestBasicShuntingYard(unittest.TestCase):
         self.shunting_yard = ShuntingYard()
         self.t = Tokenizer()
 
+    def test_verbose(self):
+        self.shunting_yard = ShuntingYard(verbose=True)
+        self.test_addition()
+
     def test_addition(self):
         result = self.shunting_yard.parse(self.t.tokenize("3 + 4")).to_list()
         self.assertEqual(result, ["3", "4", "+"])
@@ -27,8 +31,8 @@ class TestBasicShuntingYard(unittest.TestCase):
         self.assertEqual(result, assertion)
 
     def test_operator_precedence(self):
-        result = self.shunting_yard.parse(self.t.tokenize("3 + 4 * 2")).to_list()
-        self.assertEqual(result, ["3", "4", "2", "*", "+"])
+        res = self.shunting_yard.parse(self.t.tokenize("3 + 4 * 2")).to_list()
+        self.assertEqual(res, ["3", "4", "2", "*", "+"])
 
     def test_operator_precedence_parentheses(self):
         result = self.shunting_yard \
