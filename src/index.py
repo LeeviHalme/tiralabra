@@ -26,7 +26,7 @@ def evaluate(infix_expression: str, v: bool, exp: str) -> int:
   ____) | (__| |  __/ | | | |_| | | | | (__  | |___| (_| | | (__| |_| | | (_| | || (_) | |   
  |_____/ \___|_|\___|_| |_|\__|_|_| |_|\___|  \_____\__,_|_|\___|\__,_|_|\__,_|\__\___/|_|   
 """)
-    print(f"{"Input:":25} {infix_expression}")
+    print(f"{"Input:":25} {infix_expression or exp}")
     # parse the expression
     token_list = tkn.tokenize(infix_expression or exp)
     print(f"{"Parsed Tokens:":25}", token_list)
