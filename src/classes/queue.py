@@ -21,7 +21,7 @@ class Queue:
 
     def size(self) -> int:
         return len(self.queue)
-    
+
     def to_list(self) -> list:
         return list(self.queue)
 

@@ -3,15 +3,18 @@
 #
 # Methods:
 # - tokenize: returns a list of tokens from the input expression
+# pylint: disable=too-few-public-methods
 class Tokenizer:
     def __init__(self):
         self.operators = set(["+", "-", "*", "/", "^", "(", ")"])
 
+    # pylint: disable=too-many-statements
     def tokenize(self, expression: str) -> list:
         tokens = []
         negative = False
         num_start = None  # to keep track of the start index of a number
 
+        # pylint: disable=too-many-nested-blocks
         for i, char in enumerate(expression):
             # check if previous and next index can be accessed
             is_in_middle = 0 < i < (len(expression) - 1)
@@ -41,8 +44,8 @@ class Tokenizer:
                     # a space (or left parenthesis) and next char is a digit
                     # OR first to match)
                     if first_match or (is_in_middle and \
-                      (expression[i - 1] == "" or expression[i - 1] == "(") and \
-                      expression[i + 1].isdigit()):
+                      (expression[i - 1] == "" or expression[i - 1] == "(") \
+                      and expression[i + 1].isdigit()):
                         negative = True
                         continue
                 # if current character is a plus sign
@@ -51,8 +54,8 @@ class Tokenizer:
                     # number (previous char is a space (or left parenthesis) and
                     # next char is a digit)
                     if first_match or (is_in_middle and \
-                      (expression[i - 1] == "" or expression[i - 1] == "(") and \
-                      expression[i + 1].isdigit()):
+                      (expression[i - 1] == "" or expression[i - 1] == "(") \
+                      and expression[i + 1].isdigit()):
                         negative = False
                         continue
 
