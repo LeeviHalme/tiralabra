@@ -25,5 +25,10 @@ class Queue:
     def to_list(self) -> list:
         return list(self.queue)
 
+    def copy(self):
+        new_queue = Queue()
+        new_queue.queue = deque(self.queue) # shallow copy
+        return new_queue
+
     def __str__(self) -> str:
         return self.queue.__str__()
