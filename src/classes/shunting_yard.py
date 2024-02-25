@@ -18,7 +18,7 @@ class ShuntingYard:
         self.operators = set(["+", "-", "*", "/", "^"])
         self.precedence = {"+": 1, "-": 1, "*": 2, "/": 2, "^": 3}
 
-    def print(self, *args, **kwargs) -> None:
+    def __print(self, *args, **kwargs) -> None:
         if self.verbose:
             print(*args, **kwargs)
 
@@ -30,12 +30,12 @@ class ShuntingYard:
             # left parenthesis is found
             if self.op_stack.peek() == "(":
                 parenthesis_mismatch = False
-                self.print("Pop stack", self.op_stack.peek())
+                self.__print("Pop stack", self.op_stack.peek())
                 # pop the left parenthesis off the stack and discard it
                 self.op_stack.pop()
                 break
 
-            self.print("Pop stack to output", self.op_stack.peek())
+            self.__print("Pop stack to output", self.op_stack.peek())
             # add the operator to the output queue
             self.output_queue.add(self.op_stack.pop())
 
@@ -62,7 +62,7 @@ class ShuntingYard:
         for token in expression:
             # if token is a number (positive or negative)
             if token.isdigit() or token.startswith("-") and len(token) > 1:
-                self.print("Add token to output", token)
+                self.__print("Add token to output", token)
 
                 # add the number to the output queue
                 self.output_queue.add(token)
@@ -79,12 +79,12 @@ class ShuntingYard:
                 # the same precedence and o1 is left-associative)
                 while self.op_stack.size() > 0 and self.op_stack.peek() != "(" \
                 and self.has_higher_precedence(self.op_stack.peek(), token):
-                    self.print("Pop stack to output", token)
+                    self.__print("Pop stack to output", token)
 
                     # add the operator to the output queue
                     self.output_queue.add(self.op_stack.pop())
 
-                self.print("Push token to stack", token)
+                self.__print("Push token to stack", token)
 
                 # add the operator to the output queue
                 self.op_stack.push(token)
@@ -92,7 +92,7 @@ class ShuntingYard:
 
             # if token is a left parenthesis
             if token == "(":
-                self.print("Push token to stack", token)
+                self.__print("Push token to stack", token)
 
                 # push the left parenthesis onto the stack
                 self.op_stack.push(token)
@@ -103,7 +103,7 @@ class ShuntingYard:
                 self.parse_right_parenthesis()
                 continue
 
-        self.print("Pop entire stack to output")
+        self.__print("Pop entire stack to output")
 
         # pop all operators off the stack and add them to the output queue
         while self.op_stack.size() > 0:
