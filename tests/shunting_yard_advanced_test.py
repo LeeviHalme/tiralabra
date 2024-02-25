@@ -1,5 +1,6 @@
 import unittest
-from src.classes.shunting_yard import ShuntingYard, MalformedExpressionException
+from src.classes.shunting_yard import ShuntingYard
+from src.classes.exceptions import MalformedExpressionException
 
 class TestAdvancedShuntingYard(unittest.TestCase):
     def setUp(self) -> None:

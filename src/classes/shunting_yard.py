@@ -1,9 +1,6 @@
 from .stack import Stack
 from .queue import Queue
-
-# raised when the expression is malformed (e.g. mismatched parenthesis)
-class MalformedExpressionException(Exception):
-    pass
+from .exceptions import MalformedExpressionException
 
 # Implementation of the shunting yard algorithm
 #
