@@ -35,3 +35,17 @@ class TestQueue(unittest.TestCase):
     def test_remove_from_empty_queue(self):
         with self.assertRaises(IndexError):
             self.queue.remove()
+
+    def test_copy(self):
+        self.queue.add(1)
+        self.queue.add(2)
+        self.queue.add(3)
+        new_queue = self.queue.copy()
+        self.assertEqual(new_queue.to_list(), [1, 2, 3])
+        self.assertNotEqual(new_queue, self.queue)
+
+    def test_to_string(self):
+        self.queue.add(1)
+        self.queue.add(2)
+        self.queue.add(3)
+        self.assertEqual(str(self.queue), "deque([1, 2, 3])")
