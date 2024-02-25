@@ -34,7 +34,7 @@ poetry run poe cli "(1 + 2) * 5"
 # or
 
 poetry shell
-poe cli
+poe cli "(1 + 2) * 5"
 ```
 
 ## Weekly reports
