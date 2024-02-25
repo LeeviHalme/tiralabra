@@ -7,3 +7,7 @@ I made the 2nd peer review and worked on the project documentation.
 Next week I'll work on implementing the sin, cos, min and max functions as well as custom variables. I will also work on the project documentation and make final adjustements before final return.
 
 Time Spent: Approximately 4 hours
+
+## Questions
+
+- What is an appropriate amount of algorithm tests? I have both basic and advanced tests for the Shunting Yard algorithm and the RPN evaluator, but I'm not sure if I should add more tests (and also what to test).
