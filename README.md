@@ -44,3 +44,4 @@ poe cli "(1 + 2) * 5"
 - [Week 3](/.github/docs/REPORT_3.md)
 - [Week 4](/.github/docs/REPORT_4.md)
 - [Week 5](/.github/docs/REPORT_5.md)
+- [Week 6](/.github/docs/REPORT_6.md)
