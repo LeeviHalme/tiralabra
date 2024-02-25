@@ -20,6 +20,9 @@ pylint = "^3.0.3"
 cli = "poetry run python3 src/index.py" # CLI startup script
 test = "pytest" # run tests
 lint = "pylint src" # lint the code
+_coverage_run = "coverage run --branch -m pytest"
+_coverage_html = "coverage html"
+coverage = ["_coverage_run", "_coverage_html"] # generate coverage report HTML file
 
 [build-system]
 requires = ["poetry-core"]
