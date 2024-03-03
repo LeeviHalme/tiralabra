@@ -12,13 +12,14 @@ Repository for **Aineopintojen harjoitustyö: Algoritmit ja tekoäly** -course o
 - [Testing Document](/.github/docs/TESTING.md)
 - [Implementation Document](/.github/docs/IMPLEMENTATION.md)
 - [Usage Guide](/.github/docs/USAGE.md)
+- [Weekly Reports](#weekly-reports)
 
 ## Getting Started
 
 ### Prerequisites
 
-- [Python >=3.11](https://www.python.org/downloads/)
-- [Poetry >=1.6](https://python-poetry.org/)
+- [Python >=3.12](https://www.python.org/downloads/)
+- [Poetry >=1.8](https://python-poetry.org/)
 
 ### Install dependencies with Poetry:
 
@@ -29,12 +30,12 @@ poetry install
 ### Run the program:
 
 ```bash
-poetry run poe cli "(1 + 2) * 5"
+poetry run poe cli
 
 # or
 
 poetry shell
-poe cli "(1 + 2) * 5"
+poe cli
 ```
 
 ## Weekly reports
