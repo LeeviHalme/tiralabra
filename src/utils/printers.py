@@ -23,7 +23,8 @@ def print_help_page() -> None:
 
     print(f"{"Usage:":20}", "Type an expression to evaluate it. ")
     print(f"{"":25}", "Example: 2 + 2")
-    print(f"{"":20}", "Assign variables to values.")
+    print(f"{"":20}", "Assign variables to values. Available " \
+          "variables: a-z")
     print(f"{"":25}", "Example: x = 2")
     print(f"{"":20}", "Use variables in expressions.")
     print(f"{"":25}", "Example: x + 2")
