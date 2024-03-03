@@ -10,16 +10,16 @@ class TestAdvancedRPNEvaluator(unittest.TestCase):
 
     def test_division_by_zero(self):
         with self.assertRaises(MalformedExpressionException):
-            self.rpn.evaluate(Queue(deque(["5", "0", "/"])))
+            self.rpn.evaluate(Queue(deque(["5", "0", "/"])), variables={})
 
     def too_few_operands(self):
         with self.assertRaises(MalformedExpressionException):
-            self.rpn.evaluate(Queue(deque(["5", "*"])))
+            self.rpn.evaluate(Queue(deque(["5", "*"])), variables={})
 
     def test_too_many_operands(self):
         with self.assertRaises(MalformedExpressionException):
-            self.rpn.evaluate(Queue(deque(["5", "6", "+", "7"])))
+            self.rpn.evaluate(Queue(deque(["5", "6", "+", "7"])), variables={})
 
     def test_invalid_operator(self):
         with self.assertRaises(MalformedExpressionException):
-            self.rpn.evaluate(Queue(deque(["5", "6", "!", "+"])))
+            self.rpn.evaluate(Queue(deque(["5", "6", "!", "+"])), variables={})

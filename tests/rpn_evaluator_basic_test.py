@@ -12,29 +12,29 @@ class TestBasicRPNEvaluator(unittest.TestCase):
         self.test_addition()
 
     def test_addition(self):
-        result = self.rpn.evaluate(Queue(deque(["3", "4", "+"])))
+        result = self.rpn.evaluate(Queue(deque(["3", "4", "+"])), variables={})
         self.assertEqual(result, 7)
 
     def test_subtraction(self):
-        result = self.rpn.evaluate(Queue(deque(["10", "2", "-"])))
+        result = self.rpn.evaluate(Queue(deque(["10", "2", "-"])), variables={})
         self.assertEqual(result, 8)
 
     def test_multiplication(self):
-        result = self.rpn.evaluate(Queue(deque(["5", "6", "*"])))
+        result = self.rpn.evaluate(Queue(deque(["5", "6", "*"])), variables={})
         self.assertEqual(result, 30)
 
     def test_division(self):
-        result = self.rpn.evaluate(Queue(deque(["10", "2", "/"])))
+        result = self.rpn.evaluate(Queue(deque(["10", "2", "/"])), variables={})
         self.assertEqual(result, 5)
 
     def test_power(self):
-        result = self.rpn.evaluate(Queue(deque(["2", "2", "2", "^", "^"])))
+        result = self.rpn.evaluate(Queue(deque(["2", "2", "2", "^", "^"])), variables={})
         self.assertEqual(result, 16)
 
     def test_unary_negation(self):
-        result = self.rpn.evaluate(Queue(deque(["-1", "-"])))
+        result = self.rpn.evaluate(Queue(deque(["-1", "-"])), variables={})
         self.assertEqual(result, 1)
     
     def test_unary_plus(self):
-        result = self.rpn.evaluate(Queue(deque(["1", "+"])))
+        result = self.rpn.evaluate(Queue(deque(["1", "+"])), variables={})
         self.assertEqual(result, 1)
