@@ -7,6 +7,8 @@ from utils.printers import print_logo, print_help_page
 
 # global data structures
 assigned_variables = {}
+BLUE = "\033[94m"
+ENDC = "\033[0m"
 
 # evaluate a line of input
 def evaluate_line(exp: str, verbose: bool) -> int:
@@ -18,20 +20,31 @@ def evaluate_line(exp: str, verbose: bool) -> int:
     # parse the expression
     token_list = tkn.tokenize(exp)
 
+    # assign variables to local scope
     if token_list.is_variable_assignment():
-        pass
+        for variable in token_list.variables.keys():
+            # evaluate the expression
+            postfix_expression = alg.parse(token_list.variables[variable])
+            result = rpn.evaluate(postfix_expression, assigned_variables)
 
+            # store the result
+            assigned_variables[variable] = result
+            print(f"{BLUE}{variable}: {result:g}{ENDC}")
+        return
+
+    # evaluate the expression
     postfix_expression = alg.parse(token_list)
-    result = rpn.evaluate(postfix_expression)
+    result = rpn.evaluate(postfix_expression, assigned_variables)
 
     if verbose:
-        print(f"{"Input:":25} {exp}")
-        print(f"{"Parsed Tokens:":25}", token_list)
-        print(f"{"Converted Postfix (RPN):":25}", postfix_expression)
+        # pylint: disable=inconsistent-quotes
+        print(f"{'Input:':25} {exp}")
+        print(f"{'Tokenizer Result:':25}", token_list)
+        print(f"{'Converted Postfix (RPN):':25}", postfix_expression)
         print()
-        print(f"{"Evaluated RNP (result):":25}", f"{result:g}")
+        print(f"{'Evaluated RNP (result):':25}", f"{result:g}")
 
-    print(f"= {result:g}")
+    print(f"{BLUE}= {result:g}{ENDC}")
 
 @click.command()
 @click.option("--v", is_flag=True, type=click.BOOL, \
@@ -44,11 +57,11 @@ def start_cli(v: bool) -> int:
 
     # main input loop
     while True:
-        exp = input("> ")
+        exp = input("▶ ")
 
         # user issued quit command
         if exp == ":q":
-            print("Bye!")
+            print(f"{BLUE}Bye!{ENDC}")
             break
 
         # user issued help command
@@ -60,4 +73,4 @@ def start_cli(v: bool) -> int:
             # otherwise, treat as expression
             evaluate_line(exp, v)
         except MalformedExpressionException as e:
-            print(f"{type(e).__name__}: {e}")
+            print(f"MalformedExpressionException: {e}")

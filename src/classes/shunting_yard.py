@@ -1,6 +1,8 @@
+from string import ascii_lowercase
 from .stack import Stack
 from .queue import Queue
 from .exceptions import MalformedExpressionException
+from .token_list import TokenList
 
 # Implementation of the shunting yard algorithm
 #
@@ -17,10 +19,11 @@ class ShuntingYard:
         self.output_queue = Queue()
         self.operators = set(["+", "-", "*", "/", "^"])
         self.precedence = {"+": 1, "-": 1, "*": 2, "/": 2, "^": 3}
+        self.variables = set(ascii_lowercase)
 
     def __print(self, *args, **kwargs) -> None:
         if self.verbose:
-            print(*args, **kwargs)
+            print("ShuntingYard:", *args, **kwargs)
 
     def parse_right_parenthesis(self) -> None:
         parenthesis_mismatch = True
@@ -42,7 +45,7 @@ class ShuntingYard:
         # if no left parenthesis was found, the expression is malformed
         if parenthesis_mismatch:
             # pylint: disable=line-too-long
-            raise MalformedExpressionException("Mismatched parenthesis! (different number of left and right parenthesis)")
+            raise MalformedExpressionException("Unmatched parenthesis! (missing left parenthesis)")
 
     def has_higher_precedence(self, op1: str, op2: str) -> bool:
         # check if op1 has higher precedence than op2
@@ -52,19 +55,27 @@ class ShuntingYard:
           and op1 != "^")
 
     # pylint: disable=too-many-statements
-    def parse(self, expression: list) -> Queue:
-        # if expression is empty, raise an exception
-        if len(expression) == 0:
-            raise MalformedExpressionException("Empty expression!")
+    def parse(self, expression: TokenList) -> Queue:
+        # reset class variables
+        self.op_stack = Stack()
+        self.output_queue = Queue()
 
         # iterate through the expression
         # pylint: disable=too-many-nested-blocks
-        for token in expression:
+        for token in expression.tokens:
             # if token is a number (positive or negative)
             if token.isdigit() or token.startswith("-") and len(token) > 1:
                 self.__print("Add token to output", token)
 
                 # add the number to the output queue
+                self.output_queue.add(token)
+                continue
+
+            # handle variables
+            if token in self.variables:
+                self.__print("Add token to output", token)
+
+                # add the variable to the output queue
                 self.output_queue.add(token)
                 continue
 

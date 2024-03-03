@@ -1,3 +1,4 @@
+from string import ascii_lowercase
 from .queue import Queue
 from .stack import Stack
 from .exceptions import MalformedExpressionException
@@ -5,15 +6,19 @@ from .exceptions import MalformedExpressionException
 class RPNEvaluator:
     def __init__(self, verbose: bool = False) -> None:
         self.verbose = verbose
-        self.operators = set(["+", "-", "*", "/", "^"])
         self.stack = Stack()
+
+        # changing these will affect the tokenizer
+        self.operators = set(["+", "-", "*", "/", "^"])
+        self.variables = set(ascii_lowercase)
 
     def __print(self, *args, **kwargs) -> None:
         if self.verbose:
-            print(*args, **kwargs)
+            print("RNPEvaluator:", *args, **kwargs)
 
-    def evaluate(self, tokens: Queue) -> int:
+    def evaluate(self, tokens: Queue, variables: dict) -> int:
         tokens = tokens.copy()
+        self.__print("Evaluating", tokens, "with variables", variables)
         while tokens.size() > 0:
             token = tokens.remove()
 
@@ -22,6 +27,18 @@ class RPNEvaluator:
                 self.__print(f"Pushing {token} to stack")
                 self.stack.push(float(token))
                 continue
+
+            # handle variables
+            if token in self.variables:
+                self.__print(f"Variable: {token}")
+                try:
+                    self.__print(f"Pushing {variables[token]} to stack")
+                    self.stack.push(float(variables[token]))
+                    continue
+                except KeyError as e:
+                    raise MalformedExpressionException(
+                        f"Variable {token} is not assigned and has no value"
+                    ) from e
 
             # handle operators
             if token in self.operators:
@@ -39,8 +56,8 @@ class RPNEvaluator:
 
                     # if this is unary plus, ignore it
                     if token == "+" and self.stack.size() == 0:
-                        self.__print(f"Ignoring unary plus, \
-                                     pushing {num_2} back to stack")
+                        self.__print("Ignoring unary plus, " \
+                                    f"pushing {num_2} back to stack")
                         self.stack.push(num_2)
                         continue
 
@@ -59,6 +76,8 @@ class RPNEvaluator:
                         "Not enough operands for operator"
                     ) from e
 
+            if token == "(":
+                raise MalformedExpressionException("Unmatched parenthesis! (missing right parenthesis)")
             raise MalformedExpressionException(f"Invalid token: {token}")
 
         if self.stack.size() != 1:
