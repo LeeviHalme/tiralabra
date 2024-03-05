@@ -82,7 +82,7 @@ class ShuntingYard: # pylint: disable=too-many-instance-attributes
                 self.output_queue.add(token)
                 continue
 
-            # if token is an operator or function
+            # handle operators and functions
             if token in self.operators:
                 # check for precedence: while (there is an operator o2 at the
                 # top of the operator stack which is not a left parenthesis,
@@ -101,15 +101,13 @@ class ShuntingYard: # pylint: disable=too-many-instance-attributes
                 self.op_stack.push(token)
                 continue
 
-            # if token is a left parenthesis
             if token == "(":
                 self.__print("Push token to stack", token)
 
                 # push the left parenthesis onto the stack
                 self.op_stack.push(token)
                 continue
-
-            # if token is a right parenthesis
+            
             if token == ")":
                 self.parse_right_parenthesis()
                 continue
