@@ -161,3 +161,7 @@ class RPNEvaluator: # pylint: disable=too-few-public-methods
                     return max(num_1, num_2)
         except ZeroDivisionError as error:
             raise MalformedExpressionException("Division by zero") from error
+        except OverflowError as error:
+            raise MalformedExpressionException(
+                "Result exceeded Python's runtime value limit. Try smaller calculations'"
+            ) from error
