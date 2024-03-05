@@ -12,6 +12,10 @@ class TestAdvancedShuntingYard(unittest.TestCase):
         with self.assertRaises(MalformedExpressionException):
             self.shunting_yard.parse(self.t.tokenize(""))
 
-    def test_mismatched_parentheses(self):
+    def test_mismatched_parentheses_right(self):
         with self.assertRaises(MalformedExpressionException):
             self.shunting_yard.parse(self.t.tokenize("5 + )6 * 2"))
+
+    def test_unimplemented_function(self):
+        with self.assertRaises(MalformedExpressionException):
+            self.shunting_yard.parse(self.t.tokenize("sqrt(2)"))
