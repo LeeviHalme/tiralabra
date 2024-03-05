@@ -6,6 +6,8 @@ The project is a simple command-line calculator that can evaluate mathematical e
 
 - All the operators must be explicitly written within the expression. For example, `2(3 + 4)` is not a valid expression, but `2 * (3 + 4)` is.
 - Negative numbers must be written without spaces. For example, `-3 * 2` is a valid expression, but `- 3 * 2` is not.
+- Functions `sin` and `cos` expect their arguments to be in radians and take exactly one argument.
+- The `min` and `max` functions take exactly two arguments.
 
 ## Getting Started
 
@@ -32,7 +34,7 @@ Start the CLI tool and enter your mathematical expressions in the prompt. Input 
 - Powers: `^`
 - Minmax: `min()`, `max()`
 - Trigonometric functions: `sin()`, `cos()`
-- Available constants: `pi`, `e`
+- Available constants: `pi`
 - Available variables: `a-z`
 
 ```bash
