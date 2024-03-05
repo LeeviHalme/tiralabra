@@ -38,11 +38,15 @@ def evaluate_line(exp: str, verbose: bool) -> int:
 
     if verbose:
         # pylint: disable=inconsistent-quotes
+        line_length = max(len(exp),len(str(token_list)),
+                          len(str(postfix_expression)), len(str(result))
+                      ) + 25
+        print("-" * line_length)
         print(f"{'Input:':25} {exp}")
         print(f"{'Tokenizer Result:':25}", token_list)
         print(f"{'Converted Postfix (RPN):':25}", postfix_expression)
-        print()
-        print(f"{'Evaluated RNP (result):':25}", f"{result:g}")
+        print("-" * line_length)
+        print(f"{'Evaluated RNP (result):':25}", result)
 
     print(f"{BLUE}= {result:g}{ENDC}")
 
