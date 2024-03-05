@@ -5,7 +5,7 @@
 **Scope:** A scientific calculator that can evaluate mathematical expressions written in infix notation. <br />
 **Peer Reviews:** I am able to review projects written in Python or Java.
 
-All the project documentation will be written in English.
+All the project documentation will be written in English. No LLM's will be used in this project.
 
 ## Problem Statement
 
