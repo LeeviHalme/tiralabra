@@ -10,6 +10,19 @@ assigned_variables = {}
 BLUE = "\033[94m"
 ENDC = "\033[0m"
 
+# print a summary of the expression and its result
+def print_summary(exp: str, token_list: list, postfix_expression: list, result: int) -> None:
+    # pylint: disable=inconsistent-quotes
+    line_length = max(len(exp),len(str(token_list)),
+                          len(str(postfix_expression)), len(str(result))
+                      ) + 25
+    print("-" * line_length)
+    print(f"{'Input:':25} {exp}")
+    print(f"{'Tokenizer Result:':25}", token_list)
+    print(f"{'Converted Postfix (RPN):':25}", postfix_expression)
+    print("-" * line_length)
+    print(f"{'Evaluated RNP (result):':25}", result)
+
 # evaluate a line of input
 def evaluate_line(exp: str, verbose: bool) -> int:
     # initialize service classes
@@ -37,26 +50,15 @@ def evaluate_line(exp: str, verbose: bool) -> int:
     result = rpn.evaluate(postfix_expression, assigned_variables)
 
     if verbose:
-        # pylint: disable=inconsistent-quotes
-        line_length = max(len(exp),len(str(token_list)),
-                          len(str(postfix_expression)), len(str(result))
-                      ) + 25
-        print("-" * line_length)
-        print(f"{'Input:':25} {exp}")
-        print(f"{'Tokenizer Result:':25}", token_list)
-        print(f"{'Converted Postfix (RPN):':25}", postfix_expression)
-        print("-" * line_length)
-        print(f"{'Evaluated RNP (result):':25}", result)
+        print_summary(exp, token_list, postfix_expression, result)
 
     print(f"{BLUE}= {result:g}{ENDC}")
 
 @click.command()
-@click.option("--v", is_flag=True, type=click.BOOL, \
-              help="Verbose mode (prints out algorithm steps)")
+@click.option("--v", is_flag=True, type=click.BOOL, help="Verbose mode (prints algorithm steps)")
 def start_cli(v: bool) -> int:
     print_logo()
-    print("Type your expression below. Type :h to see the help page " \
-           "and :q to quit.")
+    print("Type your expression below. Type :h to see the help page and :q to quit.")
     print()
 
     # main input loop

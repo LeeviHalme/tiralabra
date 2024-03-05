@@ -8,8 +8,7 @@ from .token_list import TokenList
 # Methods:
 # - tokenize: returns a TokenList from the input expression
 # - is_variable_assignment: returns True if the expression is a variable assignment
-# pylint: disable=too-few-public-methods
-class Tokenizer:
+class Tokenizer: # pylint: disable=too-few-public-methods
     def __init__(self):
         # changing these will affect the rpn evaluator
         self.operators = set(["+", "-", "*", "/", "^", "(", ")", "="])
@@ -29,8 +28,7 @@ class Tokenizer:
 
         return TokenList([], { tokens[0]: TokenList(tokens[2:], {}) })
 
-    # pylint: disable=too-many-statements
-    def tokenize(self, expression: str) -> TokenList:
+    def tokenize(self, expression: str) -> TokenList: # pylint: disable=too-many-statements, too-many-branches
         tokens = []
         negative = False
         num_start = None  # to keep track of the start index of a number
@@ -38,9 +36,8 @@ class Tokenizer:
         if len(expression) == 0:
             raise MalformedExpressionException("Empty expression!")
 
-        # pylint: disable=too-many-nested-blocks
         skip_until_index = 0
-        for i, char in enumerate(expression):
+        for i, char in enumerate(expression): # pylint: disable=too-many-nested-blocks
             # skip characters that have already been processed
             if i < skip_until_index:
                 continue

@@ -28,10 +28,10 @@ class RPNEvaluator: # pylint: disable=too-few-public-methods
         if self.verbose:
             print("RNPEvaluator:", *args, **kwargs)
 
-    def evaluate(self, tokens: Queue, variables: dict) -> int: # pylint: disable=too-many-statements
+    def evaluate(self, tokens: Queue, variables: dict) -> int: # pylint: disable=too-many-statements, too-many-branches
         tokens = tokens.copy()
         self.__print("Evaluating", tokens, "with variables", variables)
-        while tokens.size() > 0:
+        while tokens.size() > 0: # pylint: disable=too-many-nested-blocks
             token = tokens.remove()
 
             # push numbers straight to the stack

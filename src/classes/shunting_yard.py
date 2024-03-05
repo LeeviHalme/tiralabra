@@ -47,7 +47,6 @@ class ShuntingYard: # pylint: disable=too-many-instance-attributes
 
         # if no left parenthesis was found, the expression is malformed
         if parenthesis_mismatch:
-            # pylint: disable=line-too-long
             raise MalformedExpressionException("Unmatched parenthesis! (missing left parenthesis)")
 
     def has_higher_precedence(self, op1: str, op2: str) -> bool:
@@ -57,15 +56,13 @@ class ShuntingYard: # pylint: disable=too-many-instance-attributes
           (self.precedence.get(op1, 0) == self.precedence.get(op2, 0) \
           and op1 != "^")
 
-    # pylint: disable=too-many-statements
-    def parse(self, expression: TokenList) -> Queue:
+    def parse(self, expression: TokenList) -> Queue: # pylint: disable=too-many-statements
         # reset class variables
         self.op_stack = Stack()
         self.output_queue = Queue()
 
         # iterate through the expression
-        # pylint: disable=too-many-nested-blocks
-        for token in expression.tokens:
+        for token in expression.tokens: # pylint: disable=too-many-nested-blocks
             # if token is a number (positive or negative)
             if token.isdigit() or token.startswith("-") and len(token) > 1:
                 self.__print("Add token to output", token)
@@ -107,7 +104,7 @@ class ShuntingYard: # pylint: disable=too-many-instance-attributes
                 # push the left parenthesis onto the stack
                 self.op_stack.push(token)
                 continue
-            
+
             if token == ")":
                 self.parse_right_parenthesis()
                 continue
