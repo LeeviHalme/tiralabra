@@ -18,7 +18,7 @@ Repository for **Aineopintojen harjoitustyö: Algoritmit ja tekoäly** -course o
 
 ### Prerequisites
 
-- [Python >=3.12](https://www.python.org/downloads/)
+- [Python >=3.10](https://www.python.org/downloads/)
 - [Poetry >=1.8](https://python-poetry.org/)
 
 ### Install dependencies with Poetry:
