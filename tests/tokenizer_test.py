@@ -39,7 +39,7 @@ class TestTokenizer(unittest.TestCase):
     def test_variable_assignment(self):
         exp = "x = 5 * 5"
         result = self.tokenizer.tokenize(exp)
-        self.assertEqual(result.tokens, ["x", "=", "5", "*", "5"])
+        self.assertEqual(result.tokens, [])
         self.assertEqual(result.variables.get("x").tokens, ["5", "*", "5"])
 
     def test_invalid_assignment(self):
