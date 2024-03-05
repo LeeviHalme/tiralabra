@@ -1,3 +1,8 @@
+# Custom data structure to store tokens and variables
+#
+# Methods:
+# - is_variable_assignment: returns True if the token list contains a variable assignment
+# - __str__: returns prettified string representation of the token list
 class TokenList:
     def __init__(self, tokens: list, variables: dict) -> None:
         self.tokens = tokens
