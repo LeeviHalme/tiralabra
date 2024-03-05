@@ -12,7 +12,8 @@ class TokenList:
         return len(self.variables.keys()) > 0
 
     def __str__(self) -> str:
+        # pylint: disable=inconsistent-quotes
         variables = ", ".join(
             [f"{k}: {v.tokens}" for k, v in self.variables.items()]
         )
-        return f"\n Tokens: [{", ".join(self.tokens)}] \n Variables: {variables}"
+        return f"\n Tokens: [{', '.join(self.tokens)}] \n Variables: {variables}"
