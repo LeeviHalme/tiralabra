@@ -5,9 +5,10 @@ description = "Scientific Calculator using the Shunting-yard algorithm"
 authors = ["LeeviHalme <29179759+LeeviHalme@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.10"
 click = "^8.1.7"
 
 [tool.poetry.group.dev.dependencies]
