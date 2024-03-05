@@ -1,3 +1,5 @@
+; This file is used to configure pylint. It is opionated, and customized to my liking.
+
 [MASTER]
 
 ignore=tests
@@ -18,7 +20,7 @@ disable=raw-checker-failed,
 
 [FORMAT]
 
-max-line-length=80
+max-line-length=100
 
 [STRING]
 
