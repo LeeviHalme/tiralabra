@@ -130,6 +130,6 @@ class Tokenizer:
 
         # handle variable assignments
         if self.is_variable_assignment(expression):
-            self.assign_variable(tokens)
+            return self.assign_variable(tokens)
 
         return TokenList(tokens, {})
