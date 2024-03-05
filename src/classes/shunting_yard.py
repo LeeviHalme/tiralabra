@@ -12,7 +12,7 @@ from .token_list import TokenList
 #     pops operators off the stack until a left parenthesis is found
 # - has_higher_precedence: checks if op1 has higher precedence than op2
 # - parse: parses the expression (list of tokens) and returns the output queue
-class ShuntingYard:
+class ShuntingYard: # pylint: disable=too-many-instance-attributes
     def __init__(self, verbose: bool = False):
         self.verbose = verbose
         self.op_stack = Stack()

@@ -10,7 +10,7 @@ from .exceptions import MalformedExpressionException
 # - __print: prints out the algorithm steps if verbose mode is enabled
 # - evaluate: evaluates the expression using the RPN algorithm
 # - __apply_operator: applies the operator to the two operands
-class RPNEvaluator:
+class RPNEvaluator: # pylint: disable=too-few-public-methods
     def __init__(self, verbose: bool = False) -> None:
         self.verbose = verbose
         self.stack = Stack()
@@ -28,7 +28,7 @@ class RPNEvaluator:
         if self.verbose:
             print("RNPEvaluator:", *args, **kwargs)
 
-    def evaluate(self, tokens: Queue, variables: dict) -> int:
+    def evaluate(self, tokens: Queue, variables: dict) -> int: # pylint: disable=too-many-statements
         tokens = tokens.copy()
         self.__print("Evaluating", tokens, "with variables", variables)
         while tokens.size() > 0:
@@ -138,7 +138,7 @@ class RPNEvaluator:
 
         return self.stack.pop()
 
-    def __apply_operator(self, num_1: int, operator: str, num_2: int) -> int:
+    def __apply_operator(self, num_1: int, operator: str, num_2: int) -> int: # pylint: disable=too-many-return-statements
         try:
             match operator:
                 case "+":

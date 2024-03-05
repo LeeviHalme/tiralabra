@@ -20,6 +20,15 @@ class Tokenizer:
     def is_variable_assignment(self, expression: str) -> bool:
         return "=" in expression
 
+    def assign_variable(self, tokens: list) -> TokenList:
+        # check the syntax
+        if (len(tokens) < 3 or tokens[0] not in self.variables or tokens[1] != "="):
+            raise MalformedExpressionException(
+                "Invalid variable assignment syntax. Example usage: x = 2"
+            )
+
+        return TokenList([], { tokens[0]: TokenList(tokens[2:], {}) })
+
     # pylint: disable=too-many-statements
     def tokenize(self, expression: str) -> TokenList:
         tokens = []
@@ -35,7 +44,7 @@ class Tokenizer:
             # skip characters that have already been processed
             if i < skip_until_index:
                 continue
-            
+
             # check if previous and next index can be accessed
             is_in_middle = 0 < i < (len(expression) - 1)
 
@@ -45,37 +54,39 @@ class Tokenizer:
                      # set the start index of the number
                     num_start = i
                     continue
-                else:
-                    continue
-            elif num_start is not None:
+                continue
+
+            if num_start is not None:
                 # number ends if it has started
                 number = expression[num_start:i].strip()
                 tokens.append(f"-{number}" if negative else number)
                 negative = False
                 num_start = None
 
-            # if current character is a function
+            # handle one parameter functions
             if expression[i:i + 3] in self.functions:
                 tokens.append(expression[i:i + 3])
                 skip_until_index = i + 3
                 continue
-            elif expression[i:i + 4] in self.functions:
+
+            # handle two parameter functions
+            if expression[i:i + 4] in self.functions:
                 tokens.append(expression[i:i + 4])
                 skip_until_index = i + 4
                 continue
 
-            # if current character is a constant
+            # handle constants
             if expression[i:i + 2] in self.constants:
                 tokens.append(expression[i:i + 2])
                 skip_until_index = i + 2
                 continue
 
-            # if current character is a variable
+            # handle variables
             if char in self.variables:
                 tokens.append(char)
                 continue
 
-            # if current character is an operator
+            # handle operators
             if char in self.operators:
                 first_match = i == 0 and len(expression) > 1 and expression[i + 1].isdigit()
 
@@ -117,14 +128,8 @@ class Tokenizer:
         if num_start is not None:
             tokens.append(expression[num_start:].strip())
 
+        # handle variable assignments
         if self.is_variable_assignment(expression):
-            # if this a variable assignment, check the syntax
-            if (len(tokens) < 3 or tokens[0] not in self.variables \
-            or tokens[1] != "="):
-                raise MalformedExpressionException(
-                    "Invalid variable assignment syntax. Example usage: x = 2"
-                )
-
-            return TokenList([], { tokens[0]: TokenList(tokens[2:], {}) })
+            self.assign_variable(tokens)
 
         return TokenList(tokens, {})
