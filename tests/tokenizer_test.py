@@ -1,5 +1,6 @@
 import unittest
 from src.classes.tokenizer import Tokenizer
+from src.classes.exceptions import MalformedExpressionException
 
 class TestTokenizer(unittest.TestCase):
     def setUp(self) -> None:
@@ -31,20 +32,21 @@ class TestTokenizer(unittest.TestCase):
         result = self.tokenizer.tokenize(exp)
         self.assertEqual(result.tokens, expected)
 
-    # def test_expression_with_variables(self):
-    #     exp =  "x + y * ( z - 5 ) ^ 2"
-    #     expected = ["x", "+", "y", "*", "(", "z", "-", "5", ")", "^", "2"]
-    # result = self.tokenizer.tokenize(exp)    
-    # self.assertEqual(result.tokens, expected)
+    def test_invalid_character(self):
+        with self.assertRaises(MalformedExpressionException):
+            self.tokenizer.tokenize("3 + 4 * 2 ^ 2 $")
 
-    # def test_expression_with_functions(self):
-    #     exp =  "sin(x) + cos(y) * tan(z)"
-    #     expected = ["sin", "(", "x", ")", "+", "cos", "(", "y", ")", "*", "tan", "(", "z", ")"]
-    # result = self.tokenizer.tokenize(exp)    
-    # self.assertEqual(result.tokens, expected)
+    def test_variable_assignment(self):
+        exp = "x = 5 * 5"
+        result = self.tokenizer.tokenize(exp)
+        self.assertEqual(result.tokens, [])
+        self.assertEqual(result.variables.get("x").tokens, ["5", "*", "5"])
 
-    # def test_expression_with_extra_operators(self):
-    #     exp =  "2*3 + 4//2 - 5%2"
-    #     expected = ["2", "*", "3", "+", "4", "//", "2", "-", "5", "%", "2"]
-    # result = self.tokenizer.tokenize(exp)    
-    # self.assertEqual(result.tokens, expected)
+    def test_invalid_assignment(self):
+        with self.assertRaises(MalformedExpressionException):
+            self.tokenizer.tokenize("=")
+            self.tokenizer.tokenize("= 5 * 5 +")
+            self.tokenizer.tokenize("x = 5 * 5 +")
+            self.tokenizer.tokenize("x = 5 * 5 + y")
+            self.tokenizer.tokenize("ö = 5 * 5")
+            self.tokenizer.tokenize("x = 5 * 5 = 6")
