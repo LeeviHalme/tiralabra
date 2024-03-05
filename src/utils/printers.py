@@ -13,7 +13,7 @@ def print_logo() -> None:
 def print_help_page() -> None:
     Line = namedtuple("Line", ["header", "text"])
     lines = [
-        Line("Verbose mode:", "Start the program with the -v flag to enable verbose mode."),
+        Line("Verbose mode:", "Start the program with the --v flag to enable verbose mode."),
         Line("Commands:", "Type :q to quit the program."),
         Line("", "Type :h to see this help page."),
         Line("Usage:", "Type an expression to evaluate it."),
