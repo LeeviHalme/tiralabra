@@ -42,11 +42,20 @@ Using Postfix, or Reverse Polish Notation, the operators are after operands. The
 
 ## Postfix evaluation
 
+The postfix notation is evaluated using a custom parser that can be found in `classes/rpn_evaluator.py`. The parser uses a stack to keep track of the operands and operators. The algorithm can be explained in the following steps:
+
+1. Read the input: `3 4 +`
+2. Push `3` and `4` to the stack
+3. Read the operator `+`
+4. Pop `4` and `3` from the stack
+5. Evaluate `3 + 4` and push the result `7` to the stack
+6. The stack contains exactly one item and the result `7`
+
 [YouTube: "Comp Sci in 5: Post Fix Stack Evaluator"](https://www.youtube.com/watch?v=bebqXO8H4eA)
 
 ## Custom data structures
 
-The app uses two custom data structures: `Stack` and `Queue` that can be found in `classes/stack.py` and `classes/queue.py` respectively. Both are implemented using Python's built-in `queue` structure.
+The app uses two custom data structures: `Stack` and `Queue` that can be found in `classes/stack.py` and `classes/queue.py` respectively. Both are implemented using Python's built-in `queue` structure. There are also helper classes such as `TokenList` and `MalformedExpressionError` that are used to handle the input and errors.
 
 ## Sources
 
