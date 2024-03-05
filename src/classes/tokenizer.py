@@ -77,7 +77,7 @@ class Tokenizer:
 
             # if current character is an operator
             if char in self.operators:
-                first_match = i == 0 and expression[i + 1].isdigit()
+                first_match = i == 0 and len(expression) > 1 and expression[i + 1].isdigit()
 
                 # if current character is a negative sign
                 if char == "-":
