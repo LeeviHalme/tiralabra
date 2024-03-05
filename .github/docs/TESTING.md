@@ -20,6 +20,8 @@ Coverage graph can be found below:
 
 _Each block represents a single file in the project. The size and color of each block is represented by the number of statements and the coverage, respectively._
 
-## Algorithm testing
+## Correctness testing
 
-_To be added_
+The ShuntingYard and RPNEvaluator are tested for correctness such that the program will give a specific error message if the user enters an invalid expression, and in particular it will not display any result for an expression for which no result can actually be calculated, such as if the parentheses are mismatched or the operator is missing an operand and so on.
+
+These edge cases are tested in `tests/shunting_yard_advanced_test.py` and `tests/rpn_evaluator_advanced_test.py` files.
