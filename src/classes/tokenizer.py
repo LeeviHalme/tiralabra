@@ -1,4 +1,4 @@
-from string import ascii_lowercase
+import string
 from .exceptions import MalformedExpressionException
 from .token_list import TokenList
 
@@ -6,13 +6,16 @@ from .token_list import TokenList
 # into a list of tokens to be used by the Shunting Yard algorithm.
 #
 # Methods:
-# - tokenize: returns a list of tokens from the input expression
+# - tokenize: returns a TokenList from the input expression
+# - is_variable_assignment: returns True if the expression is a variable assignment
 # pylint: disable=too-few-public-methods
 class Tokenizer:
     def __init__(self):
         # changing these will affect the rpn evaluator
         self.operators = set(["+", "-", "*", "/", "^", "(", ")", "="])
-        self.variables = set(ascii_lowercase)
+        self.functions = set(["sin", "cos", "tan", "sqrt", "min", "max"])
+        self.constants = set(["pi"])
+        self.variables = set(string.ascii_lowercase)
 
     def is_variable_assignment(self, expression: str) -> bool:
         return "=" in expression
@@ -27,7 +30,12 @@ class Tokenizer:
             raise MalformedExpressionException("Empty expression!")
 
         # pylint: disable=too-many-nested-blocks
+        skip_until_index = 0
         for i, char in enumerate(expression):
+            # skip characters that have already been processed
+            if i < skip_until_index:
+                continue
+            
             # check if previous and next index can be accessed
             is_in_middle = 0 < i < (len(expression) - 1)
 
@@ -45,7 +53,23 @@ class Tokenizer:
                 tokens.append(f"-{number}" if negative else number)
                 negative = False
                 num_start = None
-  
+
+            # if current character is a function
+            if expression[i:i + 3] in self.functions:
+                tokens.append(expression[i:i + 3])
+                skip_until_index = i + 3
+                continue
+            elif expression[i:i + 4] in self.functions:
+                tokens.append(expression[i:i + 4])
+                skip_until_index = i + 4
+                continue
+
+            # if current character is a constant
+            if expression[i:i + 2] in self.constants:
+                tokens.append(expression[i:i + 2])
+                skip_until_index = i + 2
+                continue
+
             # if current character is a variable
             if char in self.variables:
                 tokens.append(char)
@@ -81,10 +105,10 @@ class Tokenizer:
                 tokens.append(char)
                 continue
 
-            # ignore spaces
-            if char.isspace():
+            # ignore spaces and commas
+            if char.isspace() or char == ",":
                 continue
-            
+
             # token was not processed
             raise MalformedExpressionException("Invalid character" \
                                                f" '{char}' at position {i + 1}")

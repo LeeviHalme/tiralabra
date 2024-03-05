@@ -7,7 +7,7 @@ from .token_list import TokenList
 # Implementation of the shunting yard algorithm
 #
 # Methods:
-# - print: prints out the algorithm steps if verbose mode is enabled
+# - __print: prints out the algorithm steps if verbose mode is enabled
 # - parse_right_parenthesis:
 #     pops operators off the stack until a left parenthesis is found
 # - has_higher_precedence: checks if op1 has higher precedence than op2
@@ -17,8 +17,11 @@ class ShuntingYard:
         self.verbose = verbose
         self.op_stack = Stack()
         self.output_queue = Queue()
-        self.operators = set(["+", "-", "*", "/", "^"])
-        self.precedence = {"+": 1, "-": 1, "*": 2, "/": 2, "^": 3}
+        self.constants = set(["pi"])
+        self.functions = set(["sin", "cos", "max", "min"])
+        self.operators = set(["+", "-", "*", "/", "^"]) | self.functions
+        self.precedence = {"+": 1, "-": 1, "*": 2, "/": 2, \
+                          "^": 3, "cos": 4, "sin": 4, "max": 1, "min": 1}
         self.variables = set(ascii_lowercase)
 
     def __print(self, *args, **kwargs) -> None:
@@ -71,18 +74,15 @@ class ShuntingYard:
                 self.output_queue.add(token)
                 continue
 
-            # handle variables
-            if token in self.variables:
+            # handle variables and constants
+            if token in self.variables or token in self.constants:
                 self.__print("Add token to output", token)
 
                 # add the variable to the output queue
                 self.output_queue.add(token)
                 continue
 
-            # pylint: disable=fixme
-            # TODO: parse functions and constants
-
-            # if token is an operator
+            # if token is an operator or function
             if token in self.operators:
                 # check for precedence: while (there is an operator o2 at the
                 # top of the operator stack which is not a left parenthesis,
@@ -113,6 +113,8 @@ class ShuntingYard:
             if token == ")":
                 self.parse_right_parenthesis()
                 continue
+
+            raise MalformedExpressionException(f"{token} is not implemented yet!")
 
         self.__print("Pop entire stack to output")
 
