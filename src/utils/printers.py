@@ -16,6 +16,7 @@ def print_help_page() -> None:
         Line("Verbose mode:", "Start the program with the --v flag to enable verbose mode."),
         Line("Commands:", "Type :q to quit the program."),
         Line("", "Type :h to see this help page."),
+        Line("", "Type :c to clear the console."),
         Line("Usage:", "Type an expression to evaluate it."),
         Line("", "Example: 2 + 2"),
         Line("", "Assign variables to values. Available variables: a-z"),

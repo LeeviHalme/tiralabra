@@ -1,3 +1,4 @@
+from os import system, name
 import click
 from classes.shunting_yard import ShuntingYard
 from classes.tokenizer import Tokenizer
@@ -9,6 +10,13 @@ from utils.printers import print_logo, print_help_page
 assigned_variables = {}
 BLUE = "\033[94m"
 ENDC = "\033[0m"
+
+# clear the console
+def clear_console() -> None:
+    if name == "nt":
+        system("cls")
+    else:
+        system("clear")
 
 # print a summary of the expression and its result
 def print_summary(exp: str, token_list: list, postfix_expression: list, result: int) -> None:
@@ -56,7 +64,7 @@ def evaluate_line(exp: str, verbose: bool) -> int:
 
 @click.command()
 @click.option("--v", is_flag=True, type=click.BOOL, help="Verbose mode (prints algorithm steps)")
-def start_cli(v: bool) -> int:
+def start_cli(v: bool) -> int: # pylint: disable=too-many-statements
     print_logo()
     print("Type your expression below. Type :h to see the help page and :q to quit.")
     print()
@@ -73,6 +81,10 @@ def start_cli(v: bool) -> int:
         # user issued help command
         if exp == ":h":
             print_help_page()
+            continue
+
+        if exp == ":c":
+            clear_console()
             continue
 
         try:
